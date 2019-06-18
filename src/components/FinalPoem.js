@@ -1,20 +1,40 @@
 import React from 'react';
 import './FinalPoem.css';
 
-const FinalPoem = (props) => {
+class FinalPoem extends React.Component {
 
-  return (
-    <div className="FinalPoem">
-      <section className="FinalPoem__poem">
-        <h3>Final Poem</h3>
+  constructor(props) {
+    super(props);
 
-      </section>
+    this.state = {
+      cadaver: "",
+    }
+  }
+  
+  composeCadaver = (e) => {
+    // rewrite message
+    console.log("button clicked")
 
-      <div className="FinalPoem__reveal-btn-container">
-        <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" />
+    const cadaver = this.props.finalPoemCallback();
+    this.setState({
+      cadaver: cadaver
+    });
+  }
+
+  render() {
+    return (
+      <div className="FinalPoem">
+        <section className="FinalPoem__poem">
+          <h3>Final Poem</h3>
+            {this.state.cadaver}
+        </section>
+
+        <div className="FinalPoem__reveal-btn-container">
+          <input type="button" value="We are finished: Reveal the Poem" className="FinalPoem__reveal-btn" onClick={this.composeCadaver}/>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
-
+ 
 export default FinalPoem;
